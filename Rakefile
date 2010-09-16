@@ -22,3 +22,15 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 Jeweler::GemcutterTasks.new
+
+begin
+  require 'rspec/core/rake_task'
+
+  desc 'run unit testing (core test)'
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    spec_dir = File.join(File.dirname(__FILE__), 'spec')
+    t.pattern = "#{spec_dir}/*_spec.rb"
+  end
+rescue LoadError
+  warn "RSpec is not installed. Some tasks were skipped. please install rspec"
+end
