@@ -23,7 +23,7 @@ module Jpmobile
             a = r.split(/,/)
             @colors = 2 ** a[0].to_i
           end
-        when /Softbank/
+        when /Softbank/, /Vodafone/
           if r = env['HTTP_X_JPHONE_DISPLAY']
             @physical_width, @physical_height = r.split(/\*/,2).map {|x| x.to_i}
           end
